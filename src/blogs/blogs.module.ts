@@ -3,6 +3,7 @@ import { BlogsController } from './blogs.controller';
 import { BlogsService } from './blogs.service';
 import { DatabaseModule } from 'src/database/database.module';
 import { JwtModule } from '@nestjs/jwt';
+import { FileUploadService } from 'src/file-upload/file-upload.service';
 @Module({
   imports: [
     DatabaseModule,
@@ -11,6 +12,6 @@ import { JwtModule } from '@nestjs/jwt';
     }),
   ],
   controllers: [BlogsController],
-  providers: [BlogsService],
+  providers: [BlogsService, FileUploadService],
 })
 export class BlogsModule {}

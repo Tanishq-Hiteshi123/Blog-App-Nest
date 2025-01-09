@@ -11,7 +11,11 @@ import { Request } from 'express';
 @Injectable()
 export class BlogsService {
   constructor(private dataBaseService: DatabaseService) {}
-  async createNewBlog(createBlogDTO: CreateBlogDTO, req: Request) {
+  async createNewBlog(
+    createBlogDTO: CreateBlogDTO,
+    req: Request,
+    file: Express.Multer.File,
+  ) {
     try {
       const { title, description } = createBlogDTO;
       const userId = req.user?.userId;
@@ -28,6 +32,7 @@ export class BlogsService {
           title: title,
           decription: description || '',
           userId: userId,
+          blogImage: file ? file?.path : null,
         },
       });
 
